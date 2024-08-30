@@ -13,8 +13,8 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0
 
 servers:
-      - url: http://localhost:3000
-        description: Local runtime/server 
+      - url: http://192.168.88.3:3001
+        description: Local runtime/server
 
 paths:
   /setEnergy/{site_id}:
@@ -163,4 +163,122 @@ paths:
           description: Success response
         '500':
           description: Internal Server Error
-
+  /getSites:
+    get:
+      summary: Retrieves the list of sites.
+      responses:
+        '200':
+          description: Success response
+        '500':
+          description: Internal Server Error
+  /getHomeLoadChart/{site_id}:
+    get:
+      summary: Retrieves the home load chart for a specific site.
+      parameters:
+        - in: path
+          name: site_id
+          required: true
+          description: The ID of the site.
+          schema:
+            type: integer
+        - in: query
+          name: device_sn
+          schema:
+            type: string
+          description: The device serial number (optional).
+      responses:
+        '200':
+          description: Success response
+        '500':
+          description: Internal Server Error
+  /getSiteDeviceParam/{site_id}:
+    get:
+      summary: Retrieves the device parameters for a specific site.
+      parameters:
+        - in: path
+          name: site_id
+          required: true
+          description: The ID of the site.
+          schema:
+            type: integer
+        - in: query
+          name: paramType
+          schema:
+            type: string
+          description: The type of parameter to retrieve. Default is "4".
+      responses:
+        '200':
+          description: Success response
+        '500':
+          description: Internal Server Error
+  /getRelateAndBindDevices:
+    get:
+      summary: Retrieves the related and bind devices for the user.
+      responses:
+        '200':
+          description: Success response
+        '500':
+          description: Internal Server Error
+  /getUserMqttInfo:
+    get:
+      summary: Retrieves the MQTT information for the user.
+      responses:
+        '200':
+          description: Success response
+        '500':
+          description: Internal Server Error
+  /getScenInfo/{site_id}:
+    get:
+      summary: Retrieves the scene information for a specific site.
+      parameters:
+        - in: path
+          name: site_id
+          required: true
+          description: The ID of the site.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Success response
+        '500':
+          description: Internal Server Error
+  /energyAnalysis/{site_id}:
+    get:
+      summary: Performs energy analysis for a specific site.
+      parameters:
+        - in: path
+          name: site_id
+          required: true
+          description: The ID of the site.
+          schema:
+            type: integer
+        - in: query
+          name: device_sn
+          schema:
+            type: string
+          description: The device serial number (optional).
+        - in: query
+          name: type
+          schema:
+            type: string
+          description: The type of analysis to perform.
+        - in: query
+          name: start_time
+          schema:
+            type: string
+          description: The start time for the analysis.
+        - in: query
+          name: end_time
+          schema:
+            type: string
+          description: The end time for the analysis.
+        - in: query
+          name: device_type
+          schema:
+            type: string
+          description: The type of device for the analysis. Default is "solar_production".
+      responses:
+        '200':
+          description: Success response
+        '500':
+          description: Internal Server Error
