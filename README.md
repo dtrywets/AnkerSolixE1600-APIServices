@@ -1,7 +1,11 @@
 # AnkerSolixE1600-APIServices
 API Services for the Anker Solix Solarbank E1600 
 
-Added own endpoints to the api to make flows easier.
+Added own endpoints to the api to make flows easier:
+```
+/getSites, /getHomeLoadChart/{site_id}, /getSiteDeviceParam/{site_id}, /getRelateAndBindDevices,
+/getUserMqttInfo, /getScenInfo/{site_id}, and /energyAnalysis/{site_id}
+```
 
 [Test on GitPod](https://gitpod.io/#https://github.com/dtrywets/AnkerSolixE1600-APIServices)
 
